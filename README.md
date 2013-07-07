@@ -38,7 +38,7 @@ gem install bundler
 ```
 
 After that dependencies can be installed with the `bundle install`
-command.
+command. Note that it references the `gemspec` file.
 
 Progress
 --------

@@ -1,4 +1,4 @@
-Arrrrcamp 2013
+Arrrrcamp 2013 [![Build Status](https://travis-ci.org/dvberkel/Arrrrcamp2013.png?branch=master)](https://travis-ci.org/dvberkel/Arrrrcamp2013)
 ==============
 
 A compendium repository to the [Arrrrcamp 2013][arrrrcamp] presentation

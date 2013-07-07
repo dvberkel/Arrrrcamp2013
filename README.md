@@ -23,4 +23,10 @@ A compendium repository to the [Arrrrcamp 2013][arrrrcamp] presentation
 > computations and games by creating specific games that perform
 > certain computations and playing them life.
 
+Progress
+--------
+
+Want to know where I am working on? See the [Trello board][trello].
+
 [arrrrcamp]: http://arrrrcamp.be/
+[trello]: https://trello.com/board/arrrrcamp2013/51d8f6ce786f13dd240087b1

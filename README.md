@@ -42,6 +42,17 @@ command. Note that it references the `gemspec` file.
 
 We use [rake][] to automate various tasks in the project.
 
+### Testing
+
+We use [rspec][] to specify the behaviour of our code.
+
+```shell
+rake spec
+```
+
+The command above will run all specifications. Quit incidentally this
+is the default task so it suffices to just run `rake`.
+
 Progress
 --------
 
@@ -52,3 +63,4 @@ Want to know where I am working on? See the [Trello board][trello].
 [rvm]: https://rvm.io/
 [bundler]: http://bundler.io/
 [rake]: http://rake.rubyforge.org/
+[rspec]: http://rspec.info/

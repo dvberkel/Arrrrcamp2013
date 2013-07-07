@@ -30,6 +30,16 @@ We use [rvm][] to manage our ruby versions and gemsets. The project
 contains a `.rvmrc` file to change environment upon entering the
 working directory.
 
+We use [bundler][] to manage our dependencies. It can be installed
+with
+
+```shell
+gem install bundler
+```
+
+After that dependencies can be installed with the `bundle install`
+command.
+
 Progress
 --------
 
@@ -38,3 +48,4 @@ Want to know where I am working on? See the [Trello board][trello].
 [arrrrcamp]: http://arrrrcamp.be/
 [trello]: https://trello.com/board/arrrrcamp2013/51d8f6ce786f13dd240087b1
 [rvm]: https://rvm.io/
+[bundler]:

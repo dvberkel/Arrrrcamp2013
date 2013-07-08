@@ -1,0 +1,10 @@
+{
+  "name": "presentation-pirate-power-play",
+  "version": "0.0.0",
+  "dependencies": {
+    "deck.js": "latest",
+    "toc": "latest",
+    "decktoc": "latest",
+    "jasmine": "latest"
+  }
+}

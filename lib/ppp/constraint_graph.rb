@@ -1,3 +1,4 @@
+require 'set'
 require './lib/ppp/constraint_edge'
 
 module PPP
@@ -7,8 +8,8 @@ module PPP
       attr_reader :edges
 
       def initialize()
-        @vertices = []
-        @edges = []
+        @vertices = Set.new []
+        @edges = Set.new []
       end
 
       def addVertex(v)

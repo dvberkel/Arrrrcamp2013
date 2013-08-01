@@ -3,17 +3,19 @@ module PPP
     class Edge
       attr_reader :from
       attr_reader :to
+      attr_reader :weight
 
-      def initialize(u, v)
+      def initialize(u, v, weight = 1)
         @from = u
         @to = v
+        @weight = weight
       end
 
       def eql?(edge)
         same_endpoints?(edge)
       end
 
-      def hash()
+      def hash
         @from.hash ^ @to.hash
       end
 

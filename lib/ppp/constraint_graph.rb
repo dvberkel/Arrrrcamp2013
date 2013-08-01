@@ -17,11 +17,25 @@ module PPP
         @vertices << v
       end
 
-      def addEdge(u, v)
+      def addEdge(u, v, weight = 1)
         if not @vertices.member?(u) or not @vertices.member?(v) then
           raise PPP::Constraint::Exception::VertexNotPresent
         end
-        @edges << PPP::Constraint::Edge.new(u,v)
+        @edges << PPP::Constraint::Edge.new(u,v, weight=weight)
+      end
+
+      def satisfied?
+        @vertices.each do |v|
+          if v.weight > incoming_weight_for(v) then
+            return false
+          end
+        end
+        true
+      end
+
+      private
+      def incoming_weight_for(v)
+        @edges.to_a.select { |e| e.to == v }.map { |e| e.weight }.inject(0) { |x,y| x + y }
       end
     end
   end

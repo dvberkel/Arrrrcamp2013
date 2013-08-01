@@ -1,5 +1,6 @@
 require 'set'
 require './lib/ppp/constraint_edge'
+require './lib/ppp/constraint_exceptions.rb'
 
 module PPP
   module Constraint
@@ -17,6 +18,9 @@ module PPP
       end
 
       def addEdge(u, v)
+        if not @vertices.member?(u) or not @vertices.member?(v) then
+          raise PPP::Constraint::Exception::VertexNotPresent
+        end
         @edges << PPP::Constraint::Edge.new(u,v)
       end
     end

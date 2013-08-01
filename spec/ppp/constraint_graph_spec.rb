@@ -93,6 +93,32 @@ describe 'Constraint' do
 
         expect(graph.satisfied?).to be(false)
       end
+
+    end
+    describe 'moves' do
+      it 'no moves example' do
+        graph = PPP::Constraint::Graph.new
+        graph.addVertex(u = PPP::Constraint::Vertex.new)
+        graph.addVertex(v = PPP::Constraint::Vertex.new)
+        graph.addVertex(w = PPP::Constraint::Vertex.new)
+        graph.addEdge(v, u)
+        graph.addEdge(w, v)
+        graph.addEdge(u, w)
+
+        expect(graph.moves.empty?).to be(true)
+      end
+
+      it 'one move example' do
+        graph = PPP::Constraint::Graph.new
+        graph.addVertex(u = PPP::Constraint::Vertex.new(weight=0))
+        graph.addVertex(v = PPP::Constraint::Vertex.new)
+        graph.addVertex(w = PPP::Constraint::Vertex.new)
+        e = graph.addEdge(v, u)
+        graph.addEdge(w, v)
+        graph.addEdge(u, w)
+
+        expect(graph.moves).to include(e)
+      end
     end
   end
 end

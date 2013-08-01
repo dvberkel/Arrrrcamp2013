@@ -21,7 +21,8 @@ module PPP
         if not @vertices.member?(u) or not @vertices.member?(v) then
           raise PPP::Constraint::Exception::VertexNotPresent
         end
-        @edges << PPP::Constraint::Edge.new(u,v, weight=weight)
+        @edges << (edge = PPP::Constraint::Edge.new(u,v, weight=weight))
+        edge
       end
 
       def satisfied?
@@ -31,6 +32,10 @@ module PPP
           end
         end
         true
+      end
+
+      def moves
+        @edges.to_a.select { |e| incoming_weight_for(e.to) > e.to.weight }
       end
 
       private

@@ -1,4 +1,4 @@
-Arrrrcamp 2013 [![Build Status](https://travis-ci.org/dvberkel/Arrrrcamp2013.png?branch=master)](https://travis-ci.org/dvberkel/Arrrrcamp2013) [![Coverage Status](https://coveralls.io/repos/dvberkel/Arrrrcamp2013/badge.png?branch=master)](https://coveralls.io/r/dvberkel/Arrrrcamp2013?branch=master)[![wercker status](https://app.wercker.com/status/04c4fdff5edf5f94b0c81ebe09183dc4/m "wercker status")](https://app.wercker.com/project/bykey/04c4fdff5edf5f94b0c81ebe09183dc4)
+Arrrrcamp 2013 [![Build Status](https://travis-ci.org/dvberkel/Arrrrcamp2013.png?branch=master)](https://travis-ci.org/dvberkel/Arrrrcamp2013) [![Coverage Status](https://coveralls.io/repos/dvberkel/Arrrrcamp2013/badge.png?branch=master)](https://coveralls.io/r/dvberkel/Arrrrcamp2013?branch=master)[![wercker status](https://app.wercker.com/status/04c4fdff5edf5f94b0c81ebe09183dc4 "wercker status")](https://app.wercker.com/project/bykey/04c4fdff5edf5f94b0c81ebe09183dc4)
 ==============
 
 A compendium repository to the [Arrrrcamp 2013][arrrrcamp] presentation

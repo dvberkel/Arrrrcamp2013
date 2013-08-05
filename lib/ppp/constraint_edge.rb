@@ -11,6 +11,10 @@ module PPP
         @weight = weight
       end
 
+      def switch
+        @from, @to = @to, @from
+      end
+
       def eql?(edge)
         same_endpoints?(edge)
       end

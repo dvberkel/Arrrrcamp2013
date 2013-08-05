@@ -25,6 +25,13 @@ module PPP
         edge
       end
 
+      def switch(e)
+        if incoming_weight_for(e.to) - e.weight < e.to.weight then
+          raise PPP::Constraint::Exception::MoveNotAllowed
+        end
+        e.switch
+      end
+
       def satisfied?
         @vertices.each do |v|
           if v.weight > incoming_weight_for(v) then

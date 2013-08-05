@@ -131,10 +131,22 @@ describe 'Constraint' do
         graph.addEdge(w, v)
         graph.addEdge(u, w)
 
-        e.switch()
+        graph.switch(e)
 
         expect(e.from).to eq(u)
         expect(e.to).to eq(v)
+      end
+
+      it 'no moves example' do
+        graph = PPP::Constraint::Graph.new
+        graph.addVertex(u = PPP::Constraint::Vertex.new)
+        graph.addVertex(v = PPP::Constraint::Vertex.new)
+        graph.addVertex(w = PPP::Constraint::Vertex.new)
+        e = graph.addEdge(v, u)
+        graph.addEdge(w, v)
+        graph.addEdge(u, w)
+
+        expect { graph.switch(e) }.to raise_error PPP::Constraint::Exception::MoveNotAllowed
       end
     end
   end

@@ -45,7 +45,7 @@ module PPP
       end
 
       def moves
-        @edges.to_a.select { |e| incoming_weight_for(e.to) > e.to.weight }
+        @edges.to_a.select { |e| edge_playable?(e) }
       end
 
       private

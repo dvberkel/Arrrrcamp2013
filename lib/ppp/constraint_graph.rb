@@ -29,7 +29,7 @@ module PPP
         if not @edges.member?(e) then
           raise PPP::Constraint::Exception::EdgeNotPresent
         end
-        if incoming_weight_for(e.to) - e.weight < e.to.weight then
+        if not edge_playable?(e) then
           raise PPP::Constraint::Exception::MoveNotAllowed
         end
         e.switch
@@ -37,7 +37,7 @@ module PPP
 
       def satisfied?
         @vertices.each do |v|
-          if v.weight > incoming_weight_for(v) then
+          if not vertex_satisfied?(v) then
             return false
           end
         end
@@ -49,6 +49,14 @@ module PPP
       end
 
       private
+      def edge_playable?(e)
+        incoming_weight_for(e.to) - e.weight >= e.to.weight
+      end
+
+      def vertex_satisfied?(v)
+        v.weight <= incoming_weight_for(v)
+      end
+
       def incoming_weight_for(v)
         @edges.to_a.select { |e| e.to == v }.map { |e| e.weight }.inject(0) { |x,y| x + y }
       end

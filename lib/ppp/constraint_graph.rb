@@ -26,6 +26,9 @@ module PPP
       end
 
       def switch(e)
+        if not @edges.member?(e) then
+          raise PPP::Constraint::Exception::EdgeNotPresent
+        end
         if incoming_weight_for(e.to) - e.weight < e.to.weight then
           raise PPP::Constraint::Exception::MoveNotAllowed
         end

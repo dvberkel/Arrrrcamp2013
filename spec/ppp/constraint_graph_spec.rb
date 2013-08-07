@@ -148,6 +148,13 @@ describe 'Constraint' do
 
         expect { graph.switch(e) }.to raise_error PPP::Constraint::Exception::MoveNotAllowed
       end
+
+      it 'edge not present' do
+        graph = PPP::Constraint::Graph.new
+        e = PPP::Constraint::Edge.new(PPP::Constraint::Vertex, PPP::Constraint::Vertex)
+
+        expect { graph.switch(e) }.to raise_error PPP::Constraint::Exception::EdgeNotPresent
+      end
     end
   end
 end

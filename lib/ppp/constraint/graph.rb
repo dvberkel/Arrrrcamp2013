@@ -1,6 +1,6 @@
 require 'set'
-require './lib/ppp/constraint_edge'
-require './lib/ppp/constraint_exceptions.rb'
+require './lib/ppp/constraint/edge'
+require './lib/ppp/constraint/exceptions.rb'
 
 module PPP
   module Constraint

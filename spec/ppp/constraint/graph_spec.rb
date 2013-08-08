@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-require './lib/ppp/constraint_graph'
-require './lib/ppp/constraint_vertex'
-require './lib/ppp/constraint_exceptions.rb'
+require './lib/ppp/constraint/graph'
+require './lib/ppp/constraint/vertex'
+require './lib/ppp/constraint/exceptions.rb'
 
 describe 'Constraint' do
   describe 'Graph' do

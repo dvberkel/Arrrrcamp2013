@@ -1,10 +1,13 @@
 require 'set'
+require 'observer'
 require './lib/ppp/constraint/edge'
 require './lib/ppp/constraint/exceptions.rb'
 
 module PPP
   module Constraint
     class Graph
+      include Observable
+
       attr_reader :vertices
       attr_reader :edges
 
@@ -33,6 +36,8 @@ module PPP
           raise PPP::Constraint::Exception::MoveNotAllowed
         end
         e.switch
+        changed
+        notify_observers(e)
       end
 
       def satisfied?

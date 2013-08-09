@@ -155,6 +155,28 @@ describe 'Constraint' do
 
         expect { graph.switch(e) }.to raise_error PPP::Constraint::Exception::EdgeNotPresent
       end
+
+      describe 'events' do
+        it 'should notify observers when a edge switches' do
+          graph = PPP::Constraint::Graph.new
+          graph.addVertex(u = PPP::Constraint::Vertex.new(weight = 0))
+          graph.addVertex(v = PPP::Constraint::Vertex.new(weight = 0))
+          e = graph.addEdge(u, v)
+
+          observer = TestMoveObserver.new
+          graph.add_observer(observer)
+
+          graph.switch(e)
+
+          expect(observer.edge).to be(e)
+        end
+      end
     end
+  end
+end
+
+class TestMoveObserver < Struct.new(:edge)
+  def update(e)
+    self.edge = e
   end
 end

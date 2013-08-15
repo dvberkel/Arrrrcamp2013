@@ -14,6 +14,8 @@ module PPP
       def initialize()
         @vertices = Set.new []
         @edges = Set.new []
+        @target = nil
+        @target_switched = false
       end
 
       def addVertex(v)
@@ -51,6 +53,23 @@ module PPP
 
       def moves
         @edges.to_a.select { |e| edge_playable?(e) }
+      end
+
+      def target(e)
+        if @target then
+          @target_switched = false
+          @target.delete_observer(self)
+        end
+        @target = e
+        @target.add_observer(self)
+      end
+
+      def target_switched?
+        @target_switched
+      end
+
+      def update(e)
+        @target_switched = @target == e
       end
 
       private

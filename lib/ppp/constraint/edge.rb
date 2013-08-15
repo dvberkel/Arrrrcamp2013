@@ -1,6 +1,10 @@
+require 'observer'
+
 module PPP
   module Constraint
     class Edge
+      include Observable
+
       attr_reader :from
       attr_reader :to
       attr_reader :weight
@@ -13,6 +17,8 @@ module PPP
 
       def switch
         @from, @to = @to, @from
+        changed
+        notify_observers(self)
       end
 
       def eql?(edge)

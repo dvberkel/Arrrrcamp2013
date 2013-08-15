@@ -172,6 +172,46 @@ describe 'Constraint' do
         end
       end
     end
+
+    describe 'target' do
+      it 'should be able to set' do
+        graph = PPP::Constraint::Graph.new
+        graph.addVertex(u = PPP::Constraint::Vertex.new(weight = 0))
+        graph.addVertex(v = PPP::Constraint::Vertex.new(weight = 0))
+        e = graph.addEdge(u, v)
+
+        graph.target(e)
+
+        expect(graph.target_switched?).to be(false)
+      end
+
+      it 'should be reached when target is switched' do
+        graph = PPP::Constraint::Graph.new
+        graph.addVertex(u = PPP::Constraint::Vertex.new(weight = 0))
+        graph.addVertex(v = PPP::Constraint::Vertex.new(weight = 0))
+        e = graph.addEdge(u, v)
+        graph.target(e)
+
+        graph.switch(e)
+
+        expect(graph.target_switched?).to be(true)
+      end
+
+      it 'should be able to pick new target' do
+        graph = PPP::Constraint::Graph.new
+        graph.addVertex(u = PPP::Constraint::Vertex.new(weight = 0))
+        graph.addVertex(v = PPP::Constraint::Vertex.new(weight = 0))
+        graph.addVertex(w = PPP::Constraint::Vertex.new(weight = 0))
+        uv = graph.addEdge(u, v)
+        vw = graph.addEdge(v, w)
+        graph.target(uv)
+
+        graph.target(vw)
+        graph.switch(uv)
+
+        expect(graph.target_switched?).to be(false)
+      end
+    end
   end
 end
 

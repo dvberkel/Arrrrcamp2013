@@ -1,0 +1,13 @@
+require 'treetop'
+
+module PPP
+  module Constraint
+    module Parser
+      grammar Graph
+	rule graph_definition
+	  "graph" " " "end"
+	end
+      end
+    end
+  end
+end

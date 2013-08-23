@@ -1,11 +1,26 @@
 require 'treetop'
+require './lib/ppp/constraint/parser/optional_whitespace_parser'
 
 module PPP
   module Constraint
     module Parser
       grammar Graph
+        include PPP::Constraint::Parser::OptionalWhitespace
+
 	rule graph_definition
-	  "graph" " " "end"
+	  graph_header graph_body graph_footer
+	end
+
+	rule graph_header
+	  optional_whitespaces 'graph'
+	end
+
+	rule graph_body
+	  whitespaces
+	end
+
+	rule graph_footer
+	  'end' optional_whitespaces
 	end
       end
     end

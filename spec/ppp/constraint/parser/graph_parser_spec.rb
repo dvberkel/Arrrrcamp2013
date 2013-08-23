@@ -2,7 +2,6 @@ require 'spec_helper'
 
 require './lib/ppp/constraint/parser/graph_parser'
 
-
 describe 'Constraint' do
   describe 'Parser' do
     describe 'Graph' do
@@ -10,6 +9,9 @@ describe 'Constraint' do
         parser = PPP::Constraint::Parser::GraphParser.new
 
         expect(parser.parse("graph end")).to be_true
+        expect(parser.parse("   graph end")).to be_true
+        expect(parser.parse("graph end  ")).to be_true
+        expect(parser.parse("graph\n\t\nend")).to be_true
       end
     end
   end

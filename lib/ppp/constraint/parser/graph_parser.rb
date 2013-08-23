@@ -21,10 +21,6 @@ module PPP
             elements[0]
           end
 
-          def graph_body
-            elements[1]
-          end
-
           def graph_footer
             elements[2]
           end
@@ -45,11 +41,23 @@ module PPP
           r1 = _nt_graph_header
           s0 << r1
           if r1
-            r2 = _nt_graph_body
+            i2 = index
+            r3 = _nt_graph_body
+            if r3
+              r2 = r3
+            else
+              r4 = _nt_empty_graph_body
+              if r4
+                r2 = r4
+              else
+                @index = i2
+                r2 = nil
+              end
+            end
             s0 << r2
             if r2
-              r3 = _nt_graph_footer
-              s0 << r3
+              r5 = _nt_graph_footer
+              s0 << r5
             end
           end
           if s0.last
@@ -109,6 +117,13 @@ module PPP
           r0
         end
 
+        module GraphBody0
+          def vertices_definition
+            elements[0]
+          end
+
+        end
+
         def _nt_graph_body
           start_index = index
           if node_cache[:graph_body].has_key?(index)
@@ -120,9 +135,1022 @@ module PPP
             return cached
           end
 
-          r0 = _nt_whitespaces
+          i0, s0 = index, []
+          r1 = _nt_vertices_definition
+          s0 << r1
+          if r1
+            r3 = _nt_edges_definition
+            if r3
+              r2 = r3
+            else
+              r2 = instantiate_node(SyntaxNode,input, index...index)
+            end
+            s0 << r2
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(GraphBody0)
+          else
+            @index = i0
+            r0 = nil
+          end
 
           node_cache[:graph_body][start_index] = r0
+
+          r0
+        end
+
+        module VerticesDefinition0
+          def vertices_header
+            elements[0]
+          end
+
+          def vertices_footer
+            elements[2]
+          end
+        end
+
+        def _nt_vertices_definition
+          start_index = index
+          if node_cache[:vertices_definition].has_key?(index)
+            cached = node_cache[:vertices_definition][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_vertices_header
+          s0 << r1
+          if r1
+            i2 = index
+            r3 = _nt_vertices_body
+            if r3
+              r2 = r3
+            else
+              r4 = _nt_empty_vertices_body
+              if r4
+                r2 = r4
+              else
+                @index = i2
+                r2 = nil
+              end
+            end
+            s0 << r2
+            if r2
+              r5 = _nt_vertices_footer
+              s0 << r5
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(VerticesDefinition0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertices_definition][start_index] = r0
+
+          r0
+        end
+
+        module VerticesHeader0
+          def whitespaces
+            elements[0]
+          end
+
+        end
+
+        def _nt_vertices_header
+          start_index = index
+          if node_cache[:vertices_header].has_key?(index)
+            cached = node_cache[:vertices_header][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_whitespaces
+          s0 << r1
+          if r1
+            if has_terminal?("vertices", false, index)
+              r2 = instantiate_node(SyntaxNode,input, index...(index + 8))
+              @index += 8
+            else
+              terminal_parse_failure("vertices")
+              r2 = nil
+            end
+            s0 << r2
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(VerticesHeader0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertices_header][start_index] = r0
+
+          r0
+        end
+
+        module VerticesBody0
+          def whitespaces1
+            elements[0]
+          end
+
+          def vertices
+            elements[1]
+          end
+
+          def whitespaces2
+            elements[2]
+          end
+        end
+
+        def _nt_vertices_body
+          start_index = index
+          if node_cache[:vertices_body].has_key?(index)
+            cached = node_cache[:vertices_body][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_whitespaces
+          s0 << r1
+          if r1
+            r2 = _nt_vertices
+            s0 << r2
+            if r2
+              r3 = _nt_whitespaces
+              s0 << r3
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(VerticesBody0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertices_body][start_index] = r0
+
+          r0
+        end
+
+        module Vertices0
+          def vertex
+            elements[0]
+          end
+
+          def vertex_seperator
+            elements[1]
+          end
+        end
+
+        module Vertices1
+          def vertex
+            elements[1]
+          end
+        end
+
+        def _nt_vertices
+          start_index = index
+          if node_cache[:vertices].has_key?(index)
+            cached = node_cache[:vertices][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          s1, i1 = [], index
+          loop do
+            i2, s2 = index, []
+            r3 = _nt_vertex
+            s2 << r3
+            if r3
+              r4 = _nt_vertex_seperator
+              s2 << r4
+            end
+            if s2.last
+              r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
+              r2.extend(Vertices0)
+            else
+              @index = i2
+              r2 = nil
+            end
+            if r2
+              s1 << r2
+            else
+              break
+            end
+          end
+          r1 = instantiate_node(SyntaxNode,input, i1...index, s1)
+          s0 << r1
+          if r1
+            r5 = _nt_vertex
+            s0 << r5
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(Vertices1)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertices][start_index] = r0
+
+          r0
+        end
+
+        module Vertex0
+        end
+
+        module Vertex1
+        end
+
+        def _nt_vertex
+          start_index = index
+          if node_cache[:vertex].has_key?(index)
+            cached = node_cache[:vertex][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          if has_terminal?('\G[a-zA-Z]', true, index)
+            r2 = true
+            @index += 1
+          else
+            r2 = nil
+          end
+          if r2
+            r1 = r2
+          else
+            r1 = instantiate_node(SyntaxNode,input, index...index)
+          end
+          s0 << r1
+          if r1
+            i3 = index
+            i4, s4 = index, []
+            if has_terminal?('\G[1-9]', true, index)
+              r5 = true
+              @index += 1
+            else
+              r5 = nil
+            end
+            s4 << r5
+            if r5
+              s6, i6 = [], index
+              loop do
+                if has_terminal?('\G[0-9]', true, index)
+                  r7 = true
+                  @index += 1
+                else
+                  r7 = nil
+                end
+                if r7
+                  s6 << r7
+                else
+                  break
+                end
+              end
+              r6 = instantiate_node(SyntaxNode,input, i6...index, s6)
+              s4 << r6
+            end
+            if s4.last
+              r4 = instantiate_node(SyntaxNode,input, i4...index, s4)
+              r4.extend(Vertex0)
+            else
+              @index = i4
+              r4 = nil
+            end
+            if r4
+              r3 = r4
+            else
+              if has_terminal?("0", false, index)
+                r8 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                @index += 1
+              else
+                terminal_parse_failure("0")
+                r8 = nil
+              end
+              if r8
+                r3 = r8
+              else
+                @index = i3
+                r3 = nil
+              end
+            end
+            s0 << r3
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(Vertex1)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertex][start_index] = r0
+
+          r0
+        end
+
+        module VertexSeperator0
+          def optional_whitespaces1
+            elements[0]
+          end
+
+          def optional_whitespaces2
+            elements[2]
+          end
+        end
+
+        def _nt_vertex_seperator
+          start_index = index
+          if node_cache[:vertex_seperator].has_key?(index)
+            cached = node_cache[:vertex_seperator][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_optional_whitespaces
+          s0 << r1
+          if r1
+            if has_terminal?(",", false, index)
+              r2 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure(",")
+              r2 = nil
+            end
+            s0 << r2
+            if r2
+              r3 = _nt_optional_whitespaces
+              s0 << r3
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(VertexSeperator0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertex_seperator][start_index] = r0
+
+          r0
+        end
+
+        def _nt_empty_vertices_body
+          start_index = index
+          if node_cache[:empty_vertices_body].has_key?(index)
+            cached = node_cache[:empty_vertices_body][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          r0 = _nt_whitespaces
+
+          node_cache[:empty_vertices_body][start_index] = r0
+
+          r0
+        end
+
+        module VerticesFooter0
+          def whitespaces
+            elements[1]
+          end
+        end
+
+        def _nt_vertices_footer
+          start_index = index
+          if node_cache[:vertices_footer].has_key?(index)
+            cached = node_cache[:vertices_footer][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          if has_terminal?('end', false, index)
+            r1 = instantiate_node(SyntaxNode,input, index...(index + 3))
+            @index += 3
+          else
+            terminal_parse_failure('end')
+            r1 = nil
+          end
+          s0 << r1
+          if r1
+            r2 = _nt_whitespaces
+            s0 << r2
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(VerticesFooter0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertices_footer][start_index] = r0
+
+          r0
+        end
+
+        module EdgesDefinition0
+          def edges_header
+            elements[0]
+          end
+
+          def edges_footer
+            elements[2]
+          end
+        end
+
+        def _nt_edges_definition
+          start_index = index
+          if node_cache[:edges_definition].has_key?(index)
+            cached = node_cache[:edges_definition][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_edges_header
+          s0 << r1
+          if r1
+            i2 = index
+            r3 = _nt_edges_body
+            if r3
+              r2 = r3
+            else
+              r4 = _nt_empty_edges_body
+              if r4
+                r2 = r4
+              else
+                @index = i2
+                r2 = nil
+              end
+            end
+            s0 << r2
+            if r2
+              r5 = _nt_edges_footer
+              s0 << r5
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(EdgesDefinition0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:edges_definition][start_index] = r0
+
+          r0
+        end
+
+        def _nt_edges_header
+          start_index = index
+          if node_cache[:edges_header].has_key?(index)
+            cached = node_cache[:edges_header][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          if has_terminal?('edges', false, index)
+            r0 = instantiate_node(SyntaxNode,input, index...(index + 5))
+            @index += 5
+          else
+            terminal_parse_failure('edges')
+            r0 = nil
+          end
+
+          node_cache[:edges_header][start_index] = r0
+
+          r0
+        end
+
+        module EdgesBody0
+          def whitespaces1
+            elements[0]
+          end
+
+          def edges
+            elements[1]
+          end
+
+          def whitespaces2
+            elements[2]
+          end
+        end
+
+        def _nt_edges_body
+          start_index = index
+          if node_cache[:edges_body].has_key?(index)
+            cached = node_cache[:edges_body][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_whitespaces
+          s0 << r1
+          if r1
+            r2 = _nt_edges
+            s0 << r2
+            if r2
+              r3 = _nt_whitespaces
+              s0 << r3
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(EdgesBody0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:edges_body][start_index] = r0
+
+          r0
+        end
+
+        module Edges0
+          def edge
+            elements[0]
+          end
+
+          def edge_seperator
+            elements[1]
+          end
+        end
+
+        module Edges1
+          def edge
+            elements[1]
+          end
+        end
+
+        def _nt_edges
+          start_index = index
+          if node_cache[:edges].has_key?(index)
+            cached = node_cache[:edges][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          s1, i1 = [], index
+          loop do
+            i2, s2 = index, []
+            r3 = _nt_edge
+            s2 << r3
+            if r3
+              r4 = _nt_edge_seperator
+              s2 << r4
+            end
+            if s2.last
+              r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
+              r2.extend(Edges0)
+            else
+              @index = i2
+              r2 = nil
+            end
+            if r2
+              s1 << r2
+            else
+              break
+            end
+          end
+          r1 = instantiate_node(SyntaxNode,input, i1...index, s1)
+          s0 << r1
+          if r1
+            r5 = _nt_edge
+            s0 << r5
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(Edges1)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:edges][start_index] = r0
+
+          r0
+        end
+
+        module Edge0
+          def neighbour
+            elements[0]
+          end
+
+          def neighbours_seperator
+            elements[1]
+          end
+
+          def neighbours
+            elements[2]
+          end
+        end
+
+        def _nt_edge
+          start_index = index
+          if node_cache[:edge].has_key?(index)
+            cached = node_cache[:edge][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_neighbour
+          s0 << r1
+          if r1
+            r2 = _nt_neighbours_seperator
+            s0 << r2
+            if r2
+              r3 = _nt_neighbours
+              s0 << r3
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(Edge0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:edge][start_index] = r0
+
+          r0
+        end
+
+        module NeighboursSeperator0
+          def optional_whitespaces1
+            elements[0]
+          end
+
+          def optional_whitespaces2
+            elements[2]
+          end
+        end
+
+        def _nt_neighbours_seperator
+          start_index = index
+          if node_cache[:neighbours_seperator].has_key?(index)
+            cached = node_cache[:neighbours_seperator][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_optional_whitespaces
+          s0 << r1
+          if r1
+            if has_terminal?(":", false, index)
+              r2 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure(":")
+              r2 = nil
+            end
+            s0 << r2
+            if r2
+              r3 = _nt_optional_whitespaces
+              s0 << r3
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(NeighboursSeperator0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:neighbours_seperator][start_index] = r0
+
+          r0
+        end
+
+        module Neighbours0
+          def neighbour
+            elements[0]
+          end
+
+          def neighbour_seperator
+            elements[1]
+          end
+        end
+
+        module Neighbours1
+          def neighbour
+            elements[1]
+          end
+        end
+
+        def _nt_neighbours
+          start_index = index
+          if node_cache[:neighbours].has_key?(index)
+            cached = node_cache[:neighbours][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          s1, i1 = [], index
+          loop do
+            i2, s2 = index, []
+            r3 = _nt_neighbour
+            s2 << r3
+            if r3
+              r4 = _nt_neighbour_seperator
+              s2 << r4
+            end
+            if s2.last
+              r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
+              r2.extend(Neighbours0)
+            else
+              @index = i2
+              r2 = nil
+            end
+            if r2
+              s1 << r2
+            else
+              break
+            end
+          end
+          r1 = instantiate_node(SyntaxNode,input, i1...index, s1)
+          s0 << r1
+          if r1
+            r5 = _nt_neighbour
+            s0 << r5
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(Neighbours1)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:neighbours][start_index] = r0
+
+          r0
+        end
+
+        def _nt_neighbour
+          start_index = index
+          if node_cache[:neighbour].has_key?(index)
+            cached = node_cache[:neighbour][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          r0 = _nt_vertex
+
+          node_cache[:neighbour][start_index] = r0
+
+          r0
+        end
+
+        module NeighbourSeperator0
+          def optional_whitespaces1
+            elements[0]
+          end
+
+          def optional_whitespaces2
+            elements[2]
+          end
+        end
+
+        def _nt_neighbour_seperator
+          start_index = index
+          if node_cache[:neighbour_seperator].has_key?(index)
+            cached = node_cache[:neighbour_seperator][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_optional_whitespaces
+          s0 << r1
+          if r1
+            if has_terminal?(",", false, index)
+              r2 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure(",")
+              r2 = nil
+            end
+            s0 << r2
+            if r2
+              r3 = _nt_optional_whitespaces
+              s0 << r3
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(NeighbourSeperator0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:neighbour_seperator][start_index] = r0
+
+          r0
+        end
+
+        module EdgeSeperator0
+          def optional_whitespaces1
+            elements[0]
+          end
+
+          def optional_whitespaces2
+            elements[2]
+          end
+        end
+
+        def _nt_edge_seperator
+          start_index = index
+          if node_cache[:edge_seperator].has_key?(index)
+            cached = node_cache[:edge_seperator][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_optional_whitespaces
+          s0 << r1
+          if r1
+            if has_terminal?(";", false, index)
+              r2 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure(";")
+              r2 = nil
+            end
+            s0 << r2
+            if r2
+              r3 = _nt_optional_whitespaces
+              s0 << r3
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(EdgeSeperator0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:edge_seperator][start_index] = r0
+
+          r0
+        end
+
+        def _nt_empty_edges_body
+          start_index = index
+          if node_cache[:empty_edges_body].has_key?(index)
+            cached = node_cache[:empty_edges_body][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          r0 = _nt_whitespaces
+
+          node_cache[:empty_edges_body][start_index] = r0
+
+          r0
+        end
+
+        module EdgesFooter0
+          def whitespaces
+            elements[1]
+          end
+        end
+
+        def _nt_edges_footer
+          start_index = index
+          if node_cache[:edges_footer].has_key?(index)
+            cached = node_cache[:edges_footer][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          if has_terminal?('end', false, index)
+            r1 = instantiate_node(SyntaxNode,input, index...(index + 3))
+            @index += 3
+          else
+            terminal_parse_failure('end')
+            r1 = nil
+          end
+          s0 << r1
+          if r1
+            r2 = _nt_whitespaces
+            s0 << r2
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(EdgesFooter0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:edges_footer][start_index] = r0
+
+          r0
+        end
+
+        def _nt_empty_graph_body
+          start_index = index
+          if node_cache[:empty_graph_body].has_key?(index)
+            cached = node_cache[:empty_graph_body][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          r0 = _nt_whitespaces
+
+          node_cache[:empty_graph_body][start_index] = r0
 
           r0
         end

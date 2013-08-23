@@ -8,7 +8,7 @@ module PPP
         include PPP::Constraint::Parser::OptionalWhitespace
 
 	rule graph_definition
-	  graph_header graph_body graph_footer
+	  graph_header (graph_body / empty_graph_body) graph_footer
 	end
 
 	rule graph_header
@@ -16,6 +16,90 @@ module PPP
 	end
 
 	rule graph_body
+	  vertices_definition (edges_definition)?
+	end
+
+	rule vertices_definition
+	  vertices_header (vertices_body / empty_vertices_body) vertices_footer
+	end
+
+	rule vertices_header
+	  whitespaces "vertices"
+	end
+
+	rule vertices_body
+	  whitespaces vertices whitespaces
+	end
+
+	rule vertices
+	  (vertex vertex_seperator)* vertex
+	end
+
+	rule vertex
+	  [a-zA-Z]? ([1-9] [0-9]* / "0")
+	end
+
+	rule vertex_seperator
+	  optional_whitespaces "," optional_whitespaces
+	end
+
+	rule empty_vertices_body
+	  whitespaces
+	end
+
+	rule vertices_footer
+	  'end' whitespaces
+	end
+
+	rule edges_definition
+	  edges_header (edges_body / empty_edges_body) edges_footer
+	end
+
+	rule edges_header
+	  'edges'
+	end
+
+	rule edges_body
+	  whitespaces edges whitespaces
+	end
+
+	rule edges
+	  (edge edge_seperator)* edge
+	end
+
+	rule edge
+	  neighbour neighbours_seperator neighbours
+	end
+
+	rule neighbours_seperator
+	  optional_whitespaces ":" optional_whitespaces
+	end
+
+	rule neighbours
+	  (neighbour neighbour_seperator)* neighbour
+	end
+
+	rule neighbour
+	  vertex
+	end
+
+	rule neighbour_seperator
+	  optional_whitespaces "," optional_whitespaces
+	end
+
+	rule edge_seperator
+	  optional_whitespaces ";" optional_whitespaces
+	end
+
+	rule empty_edges_body
+	  whitespaces
+	end
+
+	rule edges_footer
+	  'end' whitespaces
+	end
+
+	rule empty_graph_body
 	  whitespaces
 	end
 

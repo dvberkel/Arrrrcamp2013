@@ -1,0 +1,20 @@
+require 'treetop'
+require './lib/ppp/constraint/parser/whitespace_parser'
+
+module PPP
+  module Constraint
+    module Parser
+      grammar OptionalWhitespace
+        include PPP::Constraint::Parser::Whitespace
+
+	rule optional_whitespaces
+	  whitespaces / empty
+	end
+
+	rule empty
+	  ''
+	end
+      end
+    end
+  end
+end

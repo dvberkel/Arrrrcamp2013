@@ -6,13 +6,18 @@ task :build_whitespace_parser do
   system 'bundle exec tt -f lib/ppp/constraint/parser/whitespace_parser.treetop'
 end
 
+desc 'Build optional_whitespace_parser from treetop grammar'
+task :build_optional_whitespace_parser do
+  system 'bundle exec tt -f lib/ppp/constraint/parser/optional_whitespace_parser.treetop'
+end
+
 desc 'Build graph_parser from treetop grammar'
 task :build_graph_parser do
   system 'bundle exec tt -f lib/ppp/constraint/parser/graph_parser.treetop'
 end
 
 desc 'Build all parsers'
-task :build_all_parsers => [ :build_whitespace_parser, :build_graph_parser ]
+task :build_all_parsers => [ :build_whitespace_parser, :build_optional_whitespace_parser, :build_graph_parser ]
 
 RSpec::Core::RakeTask.new(:spec)
 

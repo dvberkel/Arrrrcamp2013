@@ -70,7 +70,7 @@ describe 'Constraint' do
     end
 
     describe 'satisfied?' do
-      it 'satisfied example' do
+      it 'when edge-inflow matches weight of vertex' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new(weight=2))
         graph.addVertex(v = PPP::Constraint::Vertex.new)
@@ -82,7 +82,7 @@ describe 'Constraint' do
         expect(graph.satisfied?).to be(true)
       end
 
-      it 'unsatisfied example' do
+      it 'when edge-inflow is insufficient to match weight of vertex' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new(weight=2))
         graph.addVertex(v = PPP::Constraint::Vertex.new)
@@ -96,7 +96,7 @@ describe 'Constraint' do
     end
 
     describe 'moves' do
-      it 'no moves example' do
+      it 'empty on no possible moves' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new)
         graph.addVertex(v = PPP::Constraint::Vertex.new)
@@ -108,7 +108,7 @@ describe 'Constraint' do
         expect(graph.moves.empty?).to be(true)
       end
 
-      it 'one move example' do
+      it 'one edge can be switch' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new(weight=0))
         graph.addVertex(v = PPP::Constraint::Vertex.new)
@@ -121,8 +121,8 @@ describe 'Constraint' do
       end
     end
 
-    describe 'move' do
-      it 'one move example' do
+    describe 'switch' do
+      it 'one edge can be switched' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new(weight=0))
         graph.addVertex(v = PPP::Constraint::Vertex.new)
@@ -137,7 +137,7 @@ describe 'Constraint' do
         expect(e.to).to eq(v)
       end
 
-      it 'no moves example' do
+      it 'should raise an exception when switch is not possible' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new)
         graph.addVertex(v = PPP::Constraint::Vertex.new)
@@ -149,7 +149,7 @@ describe 'Constraint' do
         expect { graph.switch(e) }.to raise_error PPP::Constraint::Exception::MoveNotAllowed
       end
 
-      it 'edge not present' do
+      it 'should raise an exception when a edge not present' do
         graph = PPP::Constraint::Graph.new
         e = PPP::Constraint::Edge.new(PPP::Constraint::Vertex, PPP::Constraint::Vertex)
 
@@ -163,7 +163,7 @@ describe 'Constraint' do
           graph.addVertex(v = PPP::Constraint::Vertex.new(weight = 0))
           e = graph.addEdge(u, v)
 
-          observer = TestMoveObserver.new
+          observer = TestSwitchObserver.new
           graph.add_observer(observer)
 
           graph.switch(e)
@@ -174,7 +174,7 @@ describe 'Constraint' do
     end
 
     describe 'target' do
-      it 'should be able to set' do
+      it 'should be able to be set' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new(weight = 0))
         graph.addVertex(v = PPP::Constraint::Vertex.new(weight = 0))
@@ -185,7 +185,7 @@ describe 'Constraint' do
         expect(graph.target_switched?).to be(false)
       end
 
-      it 'should be reached when target is switched' do
+      it 'should be reached when target edge is switched' do
         graph = PPP::Constraint::Graph.new
         graph.addVertex(u = PPP::Constraint::Vertex.new(weight = 0))
         graph.addVertex(v = PPP::Constraint::Vertex.new(weight = 0))
@@ -215,7 +215,7 @@ describe 'Constraint' do
   end
 end
 
-class TestMoveObserver < Struct.new(:edge)
+class TestSwitchObserver < Struct.new(:edge)
   def update(e)
     self.edge = e
   end

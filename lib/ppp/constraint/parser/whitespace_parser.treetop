@@ -1,0 +1,29 @@
+require 'treetop'
+
+module PPP
+  module Constraint
+    module Parser
+      grammar Whitespace
+        rule whitespaces
+	  whitespace+
+	end
+
+        rule whitespace
+	  newline / tab / space
+	end
+
+	rule newline
+	  "\n"
+	end
+
+	rule tab
+	  "\t"
+	end
+
+	rule space
+          ' '
+	end
+      end
+    end
+  end
+end

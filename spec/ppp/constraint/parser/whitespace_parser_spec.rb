@@ -1,0 +1,35 @@
+require 'spec_helper'
+
+require './lib/ppp/constraint/parser/whitespace_parser'
+
+describe 'Constraint' do
+  describe 'Parser' do
+    describe 'Whitespace' do
+      parser = PPP::Constraint::Parser::WhitespaceParser.new
+
+      it 'should parse a single space' do
+        expect(parser.parse(' ')).to be_true
+      end
+
+      it 'should parse a single tab' do
+        expect(parser.parse("\t")).to be_true
+      end
+
+      it 'should parse a single newline' do
+        expect(parser.parse("\n")).to be_true
+      end
+
+      it 'should parse a multiple whitespace characters' do
+        expect(parser.parse("  ")).to be_true
+        expect(parser.parse(" \t")).to be_true
+        expect(parser.parse(" \n")).to be_true
+        expect(parser.parse("\t ")).to be_true
+        expect(parser.parse("\t\t")).to be_true
+        expect(parser.parse("\t\n")).to be_true
+        expect(parser.parse("\n ")).to be_true
+        expect(parser.parse("\n\t")).to be_true
+        expect(parser.parse("\n\n")).to be_true
+      end
+    end
+  end
+end

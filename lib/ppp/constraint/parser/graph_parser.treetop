@@ -36,7 +36,15 @@ module PPP
 	end
 
 	rule vertex
+	  vertex_name vertex_weight?
+	end
+
+	rule vertex_name
 	  [a-zA-Z]? ([1-9] [0-9]* / "0")
+	end
+
+	rule vertex_weight
+	  "(" [1-9] [0-9]* ")"
 	end
 
 	rule vertex_seperator

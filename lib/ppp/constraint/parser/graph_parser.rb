@@ -380,15 +380,58 @@ module PPP
         end
 
         module Vertex0
-        end
+          def vertex_name
+            elements[0]
+          end
 
-        module Vertex1
         end
 
         def _nt_vertex
           start_index = index
           if node_cache[:vertex].has_key?(index)
             cached = node_cache[:vertex][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          r1 = _nt_vertex_name
+          s0 << r1
+          if r1
+            r3 = _nt_vertex_weight
+            if r3
+              r2 = r3
+            else
+              r2 = instantiate_node(SyntaxNode,input, index...index)
+            end
+            s0 << r2
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(Vertex0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertex][start_index] = r0
+
+          r0
+        end
+
+        module VertexName0
+        end
+
+        module VertexName1
+        end
+
+        def _nt_vertex_name
+          start_index = index
+          if node_cache[:vertex_name].has_key?(index)
+            cached = node_cache[:vertex_name][index]
             if cached
               cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
               @index = cached.interval.end
@@ -439,7 +482,7 @@ module PPP
             end
             if s4.last
               r4 = instantiate_node(SyntaxNode,input, i4...index, s4)
-              r4.extend(Vertex0)
+              r4.extend(VertexName0)
             else
               @index = i4
               r4 = nil
@@ -465,13 +508,86 @@ module PPP
           end
           if s0.last
             r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
-            r0.extend(Vertex1)
+            r0.extend(VertexName1)
           else
             @index = i0
             r0 = nil
           end
 
-          node_cache[:vertex][start_index] = r0
+          node_cache[:vertex_name][start_index] = r0
+
+          r0
+        end
+
+        module VertexWeight0
+        end
+
+        def _nt_vertex_weight
+          start_index = index
+          if node_cache[:vertex_weight].has_key?(index)
+            cached = node_cache[:vertex_weight][index]
+            if cached
+              cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+              @index = cached.interval.end
+            end
+            return cached
+          end
+
+          i0, s0 = index, []
+          if has_terminal?("(", false, index)
+            r1 = instantiate_node(SyntaxNode,input, index...(index + 1))
+            @index += 1
+          else
+            terminal_parse_failure("(")
+            r1 = nil
+          end
+          s0 << r1
+          if r1
+            if has_terminal?('\G[1-9]', true, index)
+              r2 = true
+              @index += 1
+            else
+              r2 = nil
+            end
+            s0 << r2
+            if r2
+              s3, i3 = [], index
+              loop do
+                if has_terminal?('\G[0-9]', true, index)
+                  r4 = true
+                  @index += 1
+                else
+                  r4 = nil
+                end
+                if r4
+                  s3 << r4
+                else
+                  break
+                end
+              end
+              r3 = instantiate_node(SyntaxNode,input, i3...index, s3)
+              s0 << r3
+              if r3
+                if has_terminal?(")", false, index)
+                  r5 = instantiate_node(SyntaxNode,input, index...(index + 1))
+                  @index += 1
+                else
+                  terminal_parse_failure(")")
+                  r5 = nil
+                end
+                s0 << r5
+              end
+            end
+          end
+          if s0.last
+            r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+            r0.extend(VertexWeight0)
+          else
+            @index = i0
+            r0 = nil
+          end
+
+          node_cache[:vertex_weight][start_index] = r0
 
           r0
         end

@@ -104,6 +104,38 @@ describe 'Constraint' do
         GRAPH_END
         )).to be_true
       end
+
+      it 'should parse a totally disconnected graph with weights' do
+        parser = PPP::Constraint::Parser::GraphParser.new
+
+        expect(parser.parse(<<-GRAPH_END
+          graph
+            vertices
+              1(2), 2, 3(1)
+            end
+          end
+        GRAPH_END
+        )).to be_true
+      end
+
+      it 'should parse a graph with multiple edges with weights' do
+        parser = PPP::Constraint::Parser::GraphParser.new
+
+        expect(parser.parse(<<-GRAPH_END
+          graph
+            vertices
+              1, 2, 3
+            end
+
+            edges
+              1: 2(2), 3(1);
+              2: 1(3);
+              3: 1
+            end
+          end
+        GRAPH_END
+        )).to be_true
+      end
     end
   end
 end

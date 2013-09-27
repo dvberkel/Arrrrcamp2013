@@ -5,16 +5,16 @@
     var rulebook = {
         's1' : {
             'I' : { nextState : 's1', write: 'I', move: 'R' },
-            '' : { nextState : 's2', write: 'I', move: 'L' }
+            '_' : { nextState : 's2', write: 'I', move: 'L' }
         },
         's2' : {
             'I' : { nextState : 's2', write: 'I', move: 'L' },
-            '' : { nextState : 's1', write: '', move: 'R' }
+            '_' : { nextState : 's1', write: '_', move: 'R' }
         }
     };
     var startState = 's1';
 
-    var machine = new tm.Machine(word, rulebook, startState);
+    var machine = new tm.Machine(word, rulebook, startState, { blank: '_' });
 
     new tm.MachineView('turing-machine', machine, { borderCells: 7, delay: 500 });
 

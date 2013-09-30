@@ -1,0 +1,20 @@
+{
+  "name": "decktoc",
+  "version": "0.0.0",
+  "main": "jquery.deck-toc.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "homepage": "https://github.com/dvberkel/decktoc",
+  "_release": "0.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.0.0",
+    "commit": "46596225e7872666bcff6e81c21bf39413310ddb"
+  },
+  "_source": "git://github.com/dvberkel/decktoc.git",
+  "_target": "*",
+  "_originalSource": "decktoc"
+}

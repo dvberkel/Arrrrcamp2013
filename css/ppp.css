@@ -1,3 +1,7 @@
+.question:after{
+    content: "?"
+}
+
 .center {
     text-align: center;
 }

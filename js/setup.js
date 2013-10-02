@@ -11,7 +11,7 @@
 	}
     }).decktoc();
 
-    $('#rulebook').snippits({ directory: 'js', onFinish: function(){
+    $('.code').snippits({ directory: 'js', onFinish: function(){
 	$.deck('.slide');
     }});
 })(jQuery);

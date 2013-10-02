@@ -8,8 +8,9 @@
 
 	this.each(function(){
 	    var $this = $(this);
+	    var url = settings.directory + '/' + this.dataset[ settings.suffix ];
 	    $.ajax({
-		url : settings.directory + '/' + this.dataset[ settings.suffix ],
+		url : url,
 		dataType : "text",
 		success : function(data){ $this.html(data) },
 		async : false

@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="components/deck.js/themes/transition/horizontal-slide.css">
 
     <!-- custom styles -->
+    <link rel="stylesheet" href="components/deck.js-codemirror-0.0.5/themes/default.css">
+    <link rel="stylesheet" href="components/deck.js-codemirror-0.0.5/deck.codemirror.css">
     <link rel="stylesheet" href="components/deck.annotate.js/deck.annotate.css">
     <link rel="stylesheet" href="css/turingmachine.css">
     <link rel="stylesheet" href="css/ppp.css">
@@ -99,6 +101,7 @@
     <section class="slide" id="Turing Machine">
       <h3>Alan Turing's Machine</h3>
       <div class="turing-machine"></div>
+      <textarea class="code" mode="javascript">console.log('Hello World');</textarea>
     </section>
 
     <section class="slide" id="questions">
@@ -155,6 +158,9 @@
     <script src="components/deck.js/extensions/scale/deck.scale.js"></script>
 
     <!-- additional libraries. Add or remove as needed. -->
+    <script src="components/deck.js-codemirror-0.0.5/codemirror.js"></script>
+    <script src="components/deck.js-codemirror-0.0.5/mode/javascript/javascript.js"></script>
+    <script src="components/deck.js-codemirror-0.0.5/deck.codemirror.js"></script>
     <script src="components/toc/dist/jquery.toc.min.js"></script>
     <script src="components/decktoc/jquery.deck-toc.js"></script>
     <script src="components/deck.annotate.js/deck.annotate.js"></script>
